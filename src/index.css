@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    @keyframes pie {
+        0% { @apply stroke-green-500 pie-start }
+        75% { @apply stroke-yellow-500 }
+        100% { @apply stroke-red-500 pie-end }
+    }
+}
+
+@layer utilities {
+
+    .pie-start {
+        stroke-dasharray: 0 0 6.28318530718;
+    }
+
+    .pie-end {
+        stroke-dasharray: 0 6.28318530718 6.28318530718;
+    }
+}

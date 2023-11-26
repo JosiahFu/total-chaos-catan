@@ -25,24 +25,43 @@ function Settings({
             <section>
                 <h3>Players</h3>
                 {players.map((e, i) => (
-                    <div>
+                    <div key={i}>
                         <input
                             value={e}
                             onChange={event => setPlayer(i, event.target.value)}
                         />
-                        <button>X</button>
+                        <button
+                            disabled={players.length <= 2}
+                            onClick={() =>
+                                players.length > 2 &&
+                                setPlayers(players.filter((_, i2) => i !== i2))
+                            }>
+                            X
+                        </button>
                     </div>
                 ))}
-                <button onClick={() => setPlayers([...players, ''])}>+</button>
+                <button
+                    disabled={players.length >= 4}
+                    onClick={() =>
+                        players.length < 4 && setPlayers([...players, ''])
+                    }>
+                    +
+                </button>
             </section>
             <section>
                 <h3>Durations</h3>
-                {PHASES.map(e => (
-                    <div>
-                    <label>
-                        <input type="number" value={lengths[e]} onChange={event => setLength(e, parseInt(event.target.value))} />
-                        {PHASE_NAMES[e]}
-                    </label>
+                {PHASES.map((e, i) => (
+                    <div key={i}>
+                        <label>
+                            <input
+                                type='number'
+                                value={lengths[e]}
+                                onChange={event =>
+                                    setLength(e, parseInt(event.target.value))
+                                }
+                            />
+                            {PHASE_NAMES[e]}
+                        </label>
                     </div>
                 ))}
             </section>
