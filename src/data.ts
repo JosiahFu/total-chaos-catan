@@ -1,7 +1,7 @@
 
 type Phase = 'resource' | 'robber' | 'build_trade' | 'cooldown';
 
-type Dice = [number, number]
+type DiceRoll = [number, number]
 
 const PHASES = ['resource', 'robber', 'build_trade', 'cooldown'] satisfies Phase[]
 
@@ -15,4 +15,4 @@ const PHASE_NAMES = {
 type PhaseRecord = Record<Phase, string>;
 
 export { PHASES, PHASE_NAMES }
-export type { Phase, Dice, PhaseRecord };
+export type { Phase, DiceRoll, PhaseRecord };
