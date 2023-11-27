@@ -27,7 +27,7 @@ function ArbiterDisplay({
     )[phase];
 
     return (
-        <div className='grid grid-cols-1 gap-4 items-center'>
+        <div className='grid grid-cols-1 gap-4 items-center grid-rows-[auto_1fr_auto_auto_auto_auto]'>
             <div className='flex flex-col gap-2'>
                 <h2 className='text-center text-xl'>{PHASE_NAMES[phase]}</h2>
                 <div className='text-center text-lg'>Phase</div>

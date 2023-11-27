@@ -20,7 +20,7 @@ function Timer({length, phase, onEnd}: {
     }, [reset]);
 
     return (
-        <div className='rounded-full p-4 ease-linear bg-black/25'>
+        <div className='rounded-full p-4 ease-linear bg-black/25 h-full aspect-square justify-self-center'>
             <svg viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'>
                 {reset ? undefined : (
                     <circle

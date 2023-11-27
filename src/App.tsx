@@ -26,7 +26,7 @@ function App() {
         <main
             className={`${
                 playing ? bgClassName : ''
-            } transition h-screen duration-500 box-border p-4 gap-4 grid content-center`}>
+            } transition h-screen duration-500 box-border p-4 gap-4 grid content-center grid-rows-[1fr_auto]`}>
             {playing ? (
                 <>
                     <Arbiter
