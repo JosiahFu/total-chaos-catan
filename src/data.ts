@@ -1,13 +1,14 @@
 
-type Phase = 'resource' | 'robber' | 'build_trade' | 'cooldown';
-
 type DiceRoll = [number, number]
 
-const PHASES = ['resource', 'robber', 'build_trade', 'cooldown'] satisfies Phase[]
+const PHASES = ['resource', 'robber1', 'robber2', 'build_trade', 'cooldown'] as const;
+
+type Phase = (typeof PHASES)[number];
 
 const PHASE_NAMES = {
     resource: 'Collect Resources',
-    robber: 'Robber',
+    robber1: 'Robber 1',
+    robber2: 'Robber 2',
     build_trade: 'Build & Trade',
     cooldown: 'Cooldown',
 } satisfies PhaseRecord;

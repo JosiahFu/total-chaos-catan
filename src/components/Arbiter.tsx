@@ -29,9 +29,12 @@ function Arbiter({
                 setPhase('resource');
                 break;
             case 'resource':
-                setPhase(robberNext(rolls) ? 'robber' : 'build_trade');
+                setPhase(robberNext(rolls) ? 'robber1' : 'build_trade');
                 break;
-            case 'robber':
+            case 'robber1':
+                setPhase('robber2');
+                break;
+            case 'robber2':
                 setPhase('build_trade');
                 break;
             case 'build_trade':
@@ -45,7 +48,8 @@ function Arbiter({
             (
                 {
                     resource: 'bg-green-600',
-                    robber: 'bg-red-600',
+                    robber1: 'bg-red-600',
+                    robber2: 'bg-red-600',
                     build_trade: 'bg-blue-600',
                     cooldown: 'bg-white-600',
                 } satisfies PhaseRecord
@@ -69,7 +73,8 @@ function Arbiter({
     const description = (
         {
             resource: 'Collect resources on any hexagons with these numbers!',
-            robber: `${robberPlayer} steals from other players!`,
+            robber1: 'All players with >8 resources discard half!',
+            robber2: `${robberPlayer} steals from other players!`,
             build_trade: 'Develop your colony and trade with other players!',
             cooldown: 'Readjust the board from all that chaos!',
         } satisfies PhaseRecord

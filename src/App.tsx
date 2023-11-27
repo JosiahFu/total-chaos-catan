@@ -12,7 +12,8 @@ function App() {
     ]);
     const [phaseLengths, setPhaseLengths] = useState<Record<Phase, number>>({
         resource: 20,
-        robber: 20,
+        robber1: 20,
+        robber2: 20,
         build_trade: 60,
         cooldown: 20,
     });
