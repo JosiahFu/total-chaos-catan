@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Phase } from './data';
 import Arbiter from './components/Arbiter';
 import Settings from './components/Settings';
+import Button from './components/Button';
 
 function App() {
     const [players, setPlayers] = useState([
@@ -25,7 +26,7 @@ function App() {
         <main
             className={`${
                 playing ? bgClassName : ''
-            } transition h-screen duration-500`}>
+            } transition h-screen duration-500 box-border p-4 gap-4 grid content-center`}>
             {playing ? (
                 <>
                     <Arbiter
@@ -33,7 +34,7 @@ function App() {
                         phaseLengths={phaseLengths}
                         onChangeBg={setBgClassName}
                     />
-                    <button onClick={() => setPlaying(false)}>Stop Game</button>
+                    <Button onClick={() => setPlaying(false)}>Stop Game</Button>
                 </>
             ) : (
                 <>
@@ -43,7 +44,7 @@ function App() {
                         lengths={phaseLengths}
                         setLengths={setPhaseLengths}
                     />
-                    <button onClick={() => setPlaying(true)}>Begin Game</button>
+                    <Button onClick={() => setPlaying(true)}>Begin Game</Button>
                 </>
             )}
         </main>

@@ -20,14 +20,19 @@ function Timer({length, phase, onEnd}: {
     }, [reset]);
 
     return (
-        <div className='rounded-full p-4 ease-linear'>
-            <svg viewBox="0 0 4 4" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-                {reset ? undefined :
-                    <circle 
-                        className={`-rotate-90 origin-center animate-pie`}
-                        style={{animationDuration: `${length}s`}}
-                        stroke="#00acc1" strokeWidth="2" fill="none" cx="2" cy="2" r="1" />
-                }
+        <div className='rounded-full p-4 ease-linear bg-black/25'>
+            <svg viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'>
+                {reset ? undefined : (
+                    <circle
+                        className='-rotate-90 origin-center animate-pie'
+                        style={{ animationDuration: `${length}s` }}
+                        strokeWidth='2'
+                        fill='none'
+                        cx='2'
+                        cy='2'
+                        r='1'
+                    />
+                )}
             </svg>
         </div>
     );

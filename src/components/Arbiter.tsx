@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { DiceRoll, PHASE_NAMES, Phase, PhaseRecord } from '../data';
+import { DiceRoll, Phase, PhaseRecord } from '../data';
 import { randomInt, rollDie } from '../Utils';
-import Timer from './Timer';
-import Dice from './Dice';
+import ArbiterDisplay from './ArbiterDisplay';
 
 function robberNext(rolls: DiceRoll[]) {
     return rolls.some(([d1, d2]) => d1 + d2 == 7);
@@ -70,34 +69,11 @@ function Arbiter({
         }
     }, [onChangeBg, phase, players]);
 
-    const description = (
-        {
-            resource: 'Collect resources on any hexagons with these numbers!',
-            robber1: 'All players with >8 resources discard half!',
-            robber2: `${robberPlayer} steals from other players!`,
-            build_trade: 'Develop your colony and trade with other players!',
-            cooldown: 'Readjust the board from all that chaos!',
-        } satisfies PhaseRecord
-    )[phase];
-
     return (
-        <div>
-            <div>{PHASE_NAMES[phase]}</div>
-            <div>Phase</div>
-            <Timer
-                phase={phase}
-                length={phaseLengths[phase]}
-                onEnd={handleEnd}
-            />
-            {rolls.map((e, i) => (
-                <Dice key={i} roll={e} />
-            ))}
-            <p>{description}</p>
-            {robberPlayer !== undefined && phase === 'resource' && (
-                <p>Robber: {robberPlayer}</p>
-            )}
-            <button onClick={handleEnd}>Skip to next segment</button>
-        </div>
+        <ArbiterDisplay
+            {...{ phase, rolls, robberPlayer, phaseLengths }}
+            onEnd={handleEnd}
+        />
     );
 }
 
