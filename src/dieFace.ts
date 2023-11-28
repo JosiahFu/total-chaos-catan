@@ -1,6 +1,6 @@
 import { filterMap } from './Utils';
 
-type gs = ' ' | 'o';
+type Mk = ' ' | 'o';
 
 type Three<T> = [T, T, T];
 
@@ -41,7 +41,7 @@ const dotStrings = [
         'o o',
         'o o',
     ],
-] satisfies readonly (Three<`${gs}${gs}${gs}`>)[];
+] satisfies readonly (Three<`${Mk}${Mk}${Mk}`>)[];
 
 const dotLayout = dotStrings
     .map(face => face.map(row => row.split(''))

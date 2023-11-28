@@ -51,12 +51,14 @@ function ArbiterDisplay({
                 </h2>
                 <p className='text-center text-xl lg:text-2xl'>Phase</p>
             </div>
-            <Timer
-                phase={phase}
-                length={phaseLengths[phase]}
-                onEnd={onEnd}
-                className='max-w-full max-h-full lg:col-start-1 lg:row-start-2 lg:row-span-3 aspect-square'
-            />
+            <div className='lg:col-start-1 lg:row-start-2 lg:row-span-3 relative h-full min-h-0'>
+                <Timer
+                    phase={phase}
+                    length={phaseLengths[phase]}
+                    onEnd={onEnd}
+                    className='aspect-square max-h-full max-w-full relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+                />
+            </div>
             <div className='justify-self-center flex flex-col gap-4 lg:gap-8'>
                 {rolls.map((e, i) => (
                     <Dice key={i} roll={e} />
