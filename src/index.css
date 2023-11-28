@@ -14,6 +14,10 @@
             @apply pie-end stroke-red-500;
         }
     }
+
+    .button-colors {
+        @apply bg-black/25 transition hover:bg-black/20 active:bg-black/30 disabled:bg-black/10 disabled:text-black/50 disabled:hover:bg-black/10;
+    }
 }
 
 @layer utilities {

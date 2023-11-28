@@ -25,31 +25,33 @@ function Settings({
     };
 
     return (
-        <>
-            <h2>Configuration</h2>
-            <section>
-                <h3>Players</h3>
+        <div className='grid h-full grid-cols-[max-content] place-content-center gap-4 text-xl md:grid-cols-[max-content_max-content] md:gap-8 lg:text-2xl'>
+            <h2 className='text-center text-3xl md:col-span-2 lg:text-4xl'>
+                Settings
+            </h2>
+            <section className='flex flex-col items-center gap-2 md:gap-4'>
+                <h3 className='text-center text-2xl lg:text-3xl'>Players</h3>
                 {players.map((e, i) => (
-                    <div key={i}>
+                    <div key={i} className='flex flex-row items-center gap-2'>
                         <Input
+                            className='text-center'
                             value={e}
                             onChange={value => setPlayer(i, value)}
                         />
-                        {players.length > 2 && (
-                            <button
-                                onClick={() =>
-                                    players.length > 2 &&
-                                    setPlayers(
-                                        players.filter((_, i2) => i !== i2)
-                                    )
-                                }>
-                                X
-                            </button>
-                        )}
+                        <button
+                            className='button-colors h-6 w-6 rounded-full text-center text-base lg:h-8 lg:w-8 lg:text-xl '
+                            disabled={players.length <= 2}
+                            onClick={() =>
+                                players.length > 2 &&
+                                setPlayers(players.filter((_, i2) => i !== i2))
+                            }>
+                            {'\u2715' /* x */}
+                        </button>
                     </div>
                 ))}
                 {players.length < 4 && (
                     <button
+                        className='button-colors h-6 w-6 rounded-full text-center text-base lg:h-8 lg:w-8 lg:text-xl'
                         onClick={() =>
                             players.length < 4 && setPlayers([...players, ''])
                         }>
@@ -57,22 +59,22 @@ function Settings({
                     </button>
                 )}
             </section>
-            <section>
-                <h3>Durations</h3>
+            <section className='flex flex-col gap-2 md:gap-4'>
+                <h3 className='text-center text-2xl lg:text-3xl'>Durations</h3>
                 {PHASES.map((e, i) => (
-                    <div key={i}>
-                        <label>
-                            <NumberInput
-                                value={lengths[e]}
-                                onChange={value => setLength(e, value)}
-                            />
-                            {PHASE_NAMES[e]}
-                        </label>
-                    </div>
+                    <label key={i} className='flex flex-row items-center gap-2'>
+                        <NumberInput
+                            value={lengths[e]}
+                            onChange={value => setLength(e, value)}
+                        />
+                        {PHASE_NAMES[e]}
+                    </label>
                 ))}
             </section>
-            <Button onClick={onStart}>Begin Game</Button>
-        </>
+            <Button className='md:col-span-2' onClick={onStart}>
+                Begin Game
+            </Button>
+        </div>
     );
 }
 

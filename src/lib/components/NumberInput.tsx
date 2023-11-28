@@ -4,6 +4,7 @@ import Input from './Input';
 function NumberInput({
     value,
     onChange,
+    className,
     ...otherProps
 }: Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -23,6 +24,7 @@ function NumberInput({
     return (
         <Input
             type='number'
+            className={`${className} w-16`}
             value={value}
             onChange={handleChange}
             {...otherProps}
