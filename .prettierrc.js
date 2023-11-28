@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
     tabWidth: 4,
     singleQuote: true,
     jsxSingleQuote: true,
@@ -11,3 +11,5 @@ export default {
     singleAttributePerLine: false,
     plugins: ['prettier-plugin-tailwindcss'],
 };
+
+export default config;

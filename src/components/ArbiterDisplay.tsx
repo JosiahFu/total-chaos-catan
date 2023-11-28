@@ -64,13 +64,11 @@ function ArbiterDisplay({
                     <Dice key={i} roll={e} />
                 ))}
             </div>
-            <p className='min-h-[3rem] text-center md:text-xl xl:text-2xl'>
-                {description}
-            </p>
+            <p className='text-center md:text-xl xl:text-2xl'>{description}</p>
             <p className='text-center md:text-xl xl:text-2xl'>
                 {robberPlayer !== undefined &&
                 (phase === 'resource' || phase === 'robber1') ? (
-                    <>{robberPlayer} gets robber control</>
+                    <>{robberPlayer} will get robber control</>
                 ) : (
                     '\u00a0'
                 )}

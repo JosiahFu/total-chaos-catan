@@ -1,5 +1,7 @@
 import { PHASES, PHASE_NAMES, Phase } from '../lib/data';
 import Button from '../lib/components/Button';
+import Input from '../lib/components/Input';
+import NumberInput from '../lib/components/NumberInput';
 
 function Settings({
     players,
@@ -29,39 +31,40 @@ function Settings({
                 <h3>Players</h3>
                 {players.map((e, i) => (
                     <div key={i}>
-                        <input
+                        <Input
                             value={e}
-                            onChange={event => setPlayer(i, event.target.value)}
+                            onChange={value => setPlayer(i, value)}
                         />
-                        <button
-                            disabled={players.length <= 2}
-                            onClick={() =>
-                                players.length > 2 &&
-                                setPlayers(players.filter((_, i2) => i !== i2))
-                            }>
-                            X
-                        </button>
+                        {players.length > 2 && (
+                            <button
+                                onClick={() =>
+                                    players.length > 2 &&
+                                    setPlayers(
+                                        players.filter((_, i2) => i !== i2)
+                                    )
+                                }>
+                                X
+                            </button>
+                        )}
                     </div>
                 ))}
-                <button
-                    disabled={players.length >= 4}
-                    onClick={() =>
-                        players.length < 4 && setPlayers([...players, ''])
-                    }>
-                    +
-                </button>
+                {players.length < 4 && (
+                    <button
+                        onClick={() =>
+                            players.length < 4 && setPlayers([...players, ''])
+                        }>
+                        +
+                    </button>
+                )}
             </section>
             <section>
                 <h3>Durations</h3>
                 {PHASES.map((e, i) => (
                     <div key={i}>
                         <label>
-                            <input
-                                type='number'
+                            <NumberInput
                                 value={lengths[e]}
-                                onChange={event =>
-                                    setLength(e, parseInt(event.target.value))
-                                }
+                                onChange={value => setLength(e, value)}
                             />
                             {PHASE_NAMES[e]}
                         </label>
