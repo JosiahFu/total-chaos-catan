@@ -9,5 +9,5 @@ export default {
     arrowParens: 'avoid',
     endOfLine: 'lf',
     singleAttributePerLine: false,
-    plugins: ['prettier-plugin-tailwindcss']
-}
+    plugins: ['prettier-plugin-tailwindcss'],
+};

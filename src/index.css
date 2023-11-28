@@ -4,9 +4,15 @@
 
 @layer components {
     @keyframes pie {
-        0% { @apply stroke-green-500 pie-start }
-        75% { @apply stroke-yellow-500 }
-        100% { @apply stroke-red-500 pie-end }
+        0% {
+            @apply pie-start stroke-green-500;
+        }
+        75% {
+            @apply stroke-yellow-500;
+        }
+        100% {
+            @apply pie-end stroke-red-500;
+        }
     }
 }
 

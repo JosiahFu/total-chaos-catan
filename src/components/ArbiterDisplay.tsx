@@ -44,22 +44,22 @@ function ArbiterDisplay({
     )[phase];
 
     return (
-        <div className='h-full grid grid-cols-1 gap-4 lg:gap-8 items-center grid-rows-[auto_1fr_auto_auto_auto_auto_auto] lg:grid-cols-2 lg:grid-rows-[auto_1fr_auto_auto]'>
+        <div className='grid h-full grid-cols-1 grid-rows-[auto_1fr_auto_auto_auto_auto_auto] items-center gap-4 lg:grid-cols-2 lg:grid-rows-[auto_1fr_auto_auto] lg:gap-8'>
             <div className='flex flex-col gap-2 lg:col-span-2'>
                 <h2 className='text-center text-2xl lg:text-3xl'>
                     {PHASE_NAMES[phase]}
                 </h2>
                 <p className='text-center text-xl lg:text-2xl'>Phase</p>
             </div>
-            <div className='lg:col-start-1 lg:row-start-2 lg:row-span-3 relative h-full min-h-0'>
+            <div className='relative h-full min-h-0 lg:col-start-1 lg:row-span-3 lg:row-start-2'>
                 <Timer
                     phase={phase}
                     length={phaseLengths[phase]}
                     onEnd={onEnd}
-                    className='aspect-square max-h-full max-w-full relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+                    className='relative left-1/2 top-1/2 aspect-square max-h-full max-w-full -translate-x-1/2 -translate-y-1/2'
                 />
             </div>
-            <div className='justify-self-center flex flex-col gap-4 lg:gap-8'>
+            <div className='flex flex-col gap-4 justify-self-center lg:gap-8'>
                 {rolls.map((e, i) => (
                     <Dice key={i} roll={e} />
                 ))}

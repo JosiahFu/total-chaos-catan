@@ -1,7 +1,12 @@
+type DiceRoll = [number, number];
 
-type DiceRoll = [number, number]
-
-const PHASES = ['resource', 'robber1', 'robber2', 'build_trade', 'cooldown'] as const;
+const PHASES = [
+    'resource',
+    'robber1',
+    'robber2',
+    'build_trade',
+    'cooldown',
+] as const;
 
 type Phase = (typeof PHASES)[number];
 
@@ -15,5 +20,5 @@ const PHASE_NAMES = {
 
 type PhaseRecord = Record<Phase, string>;
 
-export { PHASES, PHASE_NAMES }
+export { PHASES, PHASE_NAMES };
 export type { Phase, DiceRoll, PhaseRecord };

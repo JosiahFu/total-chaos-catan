@@ -27,7 +27,7 @@ function Timer({
 
     return (
         <div
-            className={`rounded-full p-4 lg:p-8 ease-linear bg-black/25 ${
+            className={`rounded-full bg-black/25 p-4 ease-linear lg:p-8 ${
                 className ?? ''
             }`}>
             <svg
@@ -36,7 +36,7 @@ function Timer({
                 className='max-h-full max-w-full'>
                 {reset ? undefined : (
                     <circle
-                        className='-rotate-90 origin-center animate-pie'
+                        className='origin-center -rotate-90 animate-pie'
                         style={{ animationDuration: `${length}s` }}
                         strokeWidth='2'
                         fill='none'
