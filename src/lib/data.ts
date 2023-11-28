@@ -18,7 +18,7 @@ const PHASE_NAMES = {
     cooldown: 'Cooldown',
 } satisfies PhaseRecord;
 
-type PhaseRecord = Record<Phase, string>;
+type PhaseRecord<T = string> = Record<Phase, T>;
 
 export { PHASES, PHASE_NAMES };
 export type { Phase, DiceRoll, PhaseRecord };

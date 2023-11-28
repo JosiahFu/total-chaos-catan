@@ -5,11 +5,11 @@ import Dice from './Dice';
 import Timer from './Timer';
 
 const bgClassNames = {
-    resource: 'bg-green-600',
-    robber1: 'bg-red-600',
-    robber2: 'bg-red-600',
-    build_trade: 'bg-blue-500',
-    cooldown: 'bg-gray-500',
+    resource: 'bg-green-500',
+    robber1: 'bg-red-400',
+    robber2: 'bg-red-400',
+    build_trade: 'bg-blue-400',
+    cooldown: 'bg-gray-400',
 } satisfies PhaseRecord;
 
 function ArbiterDisplay({
@@ -27,18 +27,23 @@ function ArbiterDisplay({
     onEnd: () => void;
     onChangeBg?: (className: string) => void;
     onStop?: () => void;
-    phaseLengths: Record<Phase, number>;
+    phaseLengths: PhaseRecord<number>;
 }) {
     useEffect(() => {
         onChangeBg?.(bgClassNames[phase]);
     }, [onChangeBg, phase]);
 
+    const robberSteals = rolls.filter(([d1, d2]) => d1 + d2 === 7).length;
+
     const description = (
         {
             resource: 'Collect resources on any hexagons with these numbers!',
             robber1: 'All players with >8 resources discard half!',
-            robber2: `${robberPlayer} steals from other players!`,
-            build_trade: 'Develop your colony and trade with other players!',
+            robber2: `${robberPlayer} steals ${
+                robberSteals === 1 ? 'a resource' : `${robberSteals} resources`
+            } from other players!`,
+            build_trade:
+                'Develop your colony, trade with other players, & play D-cards!',
             cooldown: 'Readjust the board from all that chaos!',
         } satisfies PhaseRecord
     )[phase];

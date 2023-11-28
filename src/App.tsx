@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phase } from './lib/data';
+import { PhaseRecord } from './lib/data';
 import Arbiter from './components/Arbiter';
 import Settings from './components/Settings';
 
@@ -10,7 +10,7 @@ function App() {
         'Player 3',
         'Player 4',
     ]);
-    const [phaseLengths, setPhaseLengths] = useState<Record<Phase, number>>({
+    const [phaseLengths, setPhaseLengths] = useState<PhaseRecord<number>>({
         resource: 20,
         robber1: 20,
         robber2: 20,

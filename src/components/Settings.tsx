@@ -1,4 +1,4 @@
-import { PHASES, PHASE_NAMES, Phase } from '../lib/data';
+import { PHASES, PHASE_NAMES, Phase, PhaseRecord } from '../lib/data';
 import Button from '../lib/components/Button';
 import Input from '../lib/components/Input';
 import NumberInput from '../lib/components/NumberInput';
@@ -12,8 +12,8 @@ function Settings({
 }: {
     players: string[];
     setPlayers: (players: string[]) => void;
-    lengths: Record<Phase, number>;
-    setLengths: (lengths: Record<Phase, number>) => void;
+    lengths: PhaseRecord<number>;
+    setLengths: (lengths: PhaseRecord<number>) => void;
     onStart: () => void;
 }) {
     const setLength = (phase: Phase, length: number) => {

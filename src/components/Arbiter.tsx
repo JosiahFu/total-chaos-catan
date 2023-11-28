@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DiceRoll, Phase } from '../lib/data';
+import { DiceRoll, Phase, PhaseRecord } from '../lib/data';
 import { randomInt, rollDie } from '../lib/utils';
 import ArbiterDisplay from './ArbiterDisplay';
 
@@ -14,7 +14,7 @@ function Arbiter({
     onStop,
 }: {
     players: string[];
-    phaseLengths: Record<Phase, number>;
+    phaseLengths: PhaseRecord<number>;
     onChangeBg?: (className: string) => void;
     onStop?: () => void;
 }) {
