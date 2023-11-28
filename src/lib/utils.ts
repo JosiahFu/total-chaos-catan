@@ -23,4 +23,20 @@ function filterMap<T, U>(
     ];
 }
 
-export { setBodyClassName, randomInt, rollDie, filterMap };
+function collectToObject<T, K extends string | number | symbol, U>(
+    callback: (value: T, index: number, array: T[]) => [K, U]
+): [
+    (prev: Record<K, U>, current: T, index: number, array: T[]) => Record<K, U>,
+    Record<K, U>,
+] {
+    return [
+        (prev, current, index, array) => {
+            const [key, value] = callback(current, index, array);
+            prev[key] = value;
+            return prev;
+        },
+        {} as Record<K, U>,
+    ];
+}
+
+export { setBodyClassName, randomInt, rollDie, filterMap, collectToObject };
