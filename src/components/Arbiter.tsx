@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DiceRoll, Phase, PhaseRecord } from '../data';
+import { DiceRoll, Phase } from '../data';
 import { randomInt, rollDie } from '../Utils';
 import ArbiterDisplay from './ArbiterDisplay';
 
@@ -11,10 +11,12 @@ function Arbiter({
     players,
     phaseLengths,
     onChangeBg,
+    onStop,
 }: {
     players: string[];
     phaseLengths: Record<Phase, number>;
     onChangeBg?: (className: string) => void;
+    onStop?: () => void;
 }) {
     const [phase, setPhase] = useState<Phase>('resource');
     const [rolls, setRolls] = useState<DiceRoll[]>([]);
@@ -43,18 +45,6 @@ function Arbiter({
     };
 
     useEffect(() => {
-        onChangeBg?.(
-            (
-                {
-                    resource: 'bg-green-600',
-                    robber1: 'bg-red-600',
-                    robber2: 'bg-red-600',
-                    build_trade: 'bg-blue-600',
-                    cooldown: 'bg-white-600',
-                } satisfies PhaseRecord
-            )[phase]
-        );
-
         if (phase === 'resource') {
             const newRolls = players.map<DiceRoll>(() => [
                 rollDie(),
@@ -73,6 +63,8 @@ function Arbiter({
         <ArbiterDisplay
             {...{ phase, rolls, robberPlayer, phaseLengths }}
             onEnd={handleEnd}
+            onChangeBg={onChangeBg}
+            onStop={onStop}
         />
     );
 }

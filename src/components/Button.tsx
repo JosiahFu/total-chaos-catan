@@ -7,7 +7,9 @@ function Button({
 }: PropsWithChildren<HTMLAttributes<HTMLButtonElement>>) {
     return (
         <button
-            className={`bg-black/25 p-2 rounded-md hover:bg-black/20 active:bg-black/30 transition-colors ${className}`}
+            className={`bg-black/25 p-2 rounded-md hover:bg-black/20 active:bg-black/30 transition-colors md:text-xl xl:text-2xl ${
+                className ?? ''
+            }`}
             {...otherProps}>
             {children}
         </button>

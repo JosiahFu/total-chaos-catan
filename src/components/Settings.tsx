@@ -1,15 +1,18 @@
 import { PHASES, PHASE_NAMES, Phase } from '../data';
+import Button from './Button';
 
 function Settings({
     players,
     setPlayers,
     lengths,
     setLengths,
+    onStart,
 }: {
     players: string[];
     setPlayers: (players: string[]) => void;
     lengths: Record<Phase, number>;
     setLengths: (lengths: Record<Phase, number>) => void;
+    onStart: () => void;
 }) {
     const setLength = (phase: Phase, length: number) => {
         setLengths({ ...lengths, [phase]: length });
@@ -65,6 +68,7 @@ function Settings({
                     </div>
                 ))}
             </section>
+            <Button onClick={onStart}>Begin Game</Button>
         </>
     );
 }
