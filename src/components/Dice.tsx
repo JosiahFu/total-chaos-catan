@@ -1,4 +1,4 @@
-import { dotLayout } from '../dieFace';
+import { dotLayout } from '../lib/dieFace';
 
 function Die({ value }: { value: number }) {
     return (

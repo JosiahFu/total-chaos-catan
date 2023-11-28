@@ -1,5 +1,5 @@
-import { PHASES, PHASE_NAMES, Phase } from '../data';
-import Button from './Button';
+import { PHASES, PHASE_NAMES, Phase } from '../lib/data';
+import Button from '../lib/components/Button';
 
 function Settings({
     players,

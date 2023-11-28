@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { DiceRoll, Phase } from '../data';
-import { randomInt, rollDie } from '../Utils';
+import { DiceRoll, Phase } from '../lib/data';
+import { randomInt, rollDie } from '../lib/utils';
 import ArbiterDisplay from './ArbiterDisplay';
 
 function robberNext(rolls: DiceRoll[]) {

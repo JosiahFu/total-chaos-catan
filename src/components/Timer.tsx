@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { Phase } from '../data';
+import { Phase } from '../lib/data';
 
 function Timer({
     length,

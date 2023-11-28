@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { DiceRoll, PHASE_NAMES, Phase, PhaseRecord } from '../data';
-import Button from './Button';
+import { DiceRoll, PHASE_NAMES, Phase, PhaseRecord } from '../lib/data';
+import Button from '../lib/components/Button';
 import Dice from './Dice';
 import Timer from './Timer';
 

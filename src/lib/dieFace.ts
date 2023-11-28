@@ -1,4 +1,4 @@
-import { filterMap } from './Utils';
+import { filterMap } from './utils';
 
 type Mk = ' ' | 'o';
 

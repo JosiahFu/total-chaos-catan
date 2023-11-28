@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phase } from './data';
+import { Phase } from './lib/data';
 import Arbiter from './components/Arbiter';
 import Settings from './components/Settings';
 
