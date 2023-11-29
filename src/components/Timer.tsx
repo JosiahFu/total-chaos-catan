@@ -1,5 +1,6 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { Phase } from '../lib/data';
+import { useWatch } from '../lib/useWatch';
 
 function Timer({
     length,
@@ -14,12 +15,12 @@ function Timer({
 }) {
     const [reset, setReset] = useState(true);
 
-    useEffect(() => {
+    useWatch(() => {
         setReset(true);
         if (!onEnd) return;
         const timeout = setTimeout(onEnd, length * 1000);
         return () => clearTimeout(timeout);
-    }, [length, onEnd, phase]); // Should update every time phase changes
+    }, phase);
 
     useLayoutEffect(() => {
         if (reset) setReset(false);

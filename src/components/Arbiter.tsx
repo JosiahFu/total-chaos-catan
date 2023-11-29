@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DiceRoll, Phase, PhaseRecord } from '../lib/data';
 import { randomInt, rollDie } from '../lib/utils';
 import ArbiterDisplay from './ArbiterDisplay';
+import { useWatch } from '../lib/useWatch';
 
 function robberNext(rolls: DiceRoll[]) {
     return rolls.some(([d1, d2]) => d1 + d2 == 7);
@@ -20,50 +21,59 @@ function Arbiter({
 }) {
     const [phase, setPhase] = useState<Phase>('resource');
     const [rolls, setRolls] = useState<DiceRoll[]>([]);
-    const [robberPlayer, setRobberPlayer] = useState<string | undefined>(
+    const [robberPlayer, setRobberPlayer] = useState<number | undefined>(
         undefined
     );
+    const [knightCounts, setKnightCounts] = useState(players.map(() => 0));
 
     const handleEnd = () => {
-        switch (phase) {
-            case 'cooldown':
-                setPhase('resource');
-                break;
-            case 'resource':
-                setPhase(robberNext(rolls) ? 'robber1' : 'build_trade');
-                break;
-            case 'robber1':
-                setPhase('robber2');
-                break;
-            case 'robber2':
-                setPhase('build_trade');
-                break;
-            case 'build_trade':
-                setPhase('cooldown');
-                break;
-        }
+        const nextPhase = (
+            {
+                cooldown: 'resource',
+                resource: robberNext(rolls) ? 'robber1' : 'build_trade',
+                robber1: 'robber2',
+                robber2: 'build_trade',
+                build_trade: 'cooldown',
+            } satisfies PhaseRecord<Phase>
+        )[phase];
+
+        setPhase(nextPhase);
     };
 
-    useEffect(() => {
+    const handleKnight = (playerIndex: number, change: number) => {
+        setKnightCounts(
+            knightCounts.map((e, i) => (playerIndex === i ? e + change : e))
+        );
+    };
+
+    useWatch(() => {
         if (phase === 'resource') {
             const newRolls = players.map<DiceRoll>(() => [
                 rollDie(),
                 rollDie(),
             ]);
             setRolls(newRolls);
-            setRobberPlayer(
-                robberNext(newRolls)
-                    ? players[randomInt(players.length)]
-                    : undefined
-            );
+
+            if (!robberNext(newRolls)) {
+                setRobberPlayer(undefined);
+                return;
+            }
+
+            const pool = knightCounts
+                .map((playerIndex, count) =>
+                    Array<number>(count + 1).fill(playerIndex)
+                )
+                .flat(1);
+            setRobberPlayer(pool[randomInt(pool.length)]);
         }
-    }, [onChangeBg, phase, players]);
+    }, phase);
 
     return (
         <ArbiterDisplay
-            {...{ phase, rolls, robberPlayer, phaseLengths }}
+            {...{ phase, rolls, players, robberPlayer, phaseLengths }}
             onEnd={handleEnd}
             onChangeBg={onChangeBg}
+            onKnight={handleKnight}
             onStop={onStop}
         />
     );

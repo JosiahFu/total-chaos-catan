@@ -15,17 +15,21 @@ const bgClassNames = {
 function ArbiterDisplay({
     phase,
     rolls,
+    players,
     robberPlayer,
     onEnd,
-    onStop,
     onChangeBg,
+    onKnight,
+    onStop,
     phaseLengths,
 }: {
     phase: Phase;
     rolls: DiceRoll[];
-    robberPlayer: string | undefined;
+    players: string[];
+    robberPlayer: number | undefined;
     onEnd: () => void;
     onChangeBg?: (className: string) => void;
+    onKnight?: (playerIndex: number, change: number) => void;
     onStop?: () => void;
     phaseLengths: PhaseRecord<number>;
 }) {
@@ -39,7 +43,9 @@ function ArbiterDisplay({
         {
             resource: 'Collect resources on any hexagons with these numbers!',
             robber1: 'All players with >8 resources discard half!',
-            robber2: `${robberPlayer} steals ${
+            robber2: `${
+                robberPlayer === undefined ? '' : players[robberPlayer]
+            } steals ${
                 robberSteals === 1 ? 'a resource' : `${robberSteals} resources`
             } from other players!`,
             build_trade:
@@ -65,15 +71,26 @@ function ArbiterDisplay({
                 />
             </div>
             <div className='flex flex-col gap-4 justify-self-center lg:gap-8'>
-                {rolls.map((e, i) => (
-                    <Dice key={i} roll={e} />
-                ))}
+                {phase === 'resource' ||
+                phase === 'robber1' ||
+                phase === 'robber2' ? (
+                    rolls.map((e, i) => <Dice key={i} roll={e} />)
+                ) : (
+                    <>
+                        <h3>Knight Card</h3>
+                        {players.map((e, i) => (
+                            <Button key={i} onClick={() => onKnight?.(i, 1)}>
+                                {e}
+                            </Button>
+                        ))}
+                    </>
+                )}
             </div>
             <p className='text-center md:text-xl xl:text-2xl'>{description}</p>
             <p className='text-center md:text-xl xl:text-2xl'>
                 {robberPlayer !== undefined &&
                 (phase === 'resource' || phase === 'robber1') ? (
-                    <>{robberPlayer} will get robber control</>
+                    <>{players[robberPlayer]} will get robber control</>
                 ) : (
                     '\u00a0'
                 )}
