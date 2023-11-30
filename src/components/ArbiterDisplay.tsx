@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { DiceRoll, PHASE_NAMES, Phase, PhaseRecord } from '../lib/data';
 import Button from '../lib/components/Button';
 import Dice from './Dice';
-import Timer from './Timer';
+import Timer from './PieTimer';
+import CircleButton from '../lib/components/CircleButton';
+import CountdownTimer from './CountdownTimer';
 
 const bgClassNames = {
     resource: 'bg-green-500',
@@ -22,6 +24,7 @@ function ArbiterDisplay({
     onKnight,
     onStop,
     phaseLengths,
+    knightCounts,
 }: {
     phase: Phase;
     rolls: DiceRoll[];
@@ -32,6 +35,7 @@ function ArbiterDisplay({
     onKnight?: (playerIndex: number, change: number) => void;
     onStop?: () => void;
     phaseLengths: PhaseRecord<number>;
+    knightCounts: number[];
 }) {
     useEffect(() => {
         onChangeBg?.(bgClassNames[phase]);
@@ -56,18 +60,20 @@ function ArbiterDisplay({
 
     return (
         <div className='grid h-full grid-cols-1 grid-rows-[auto_1fr_auto_auto_auto_auto_auto] items-center gap-4 lg:grid-cols-2 lg:grid-rows-[auto_1fr_auto_auto] lg:gap-8'>
-            <div className='flex flex-col gap-2 lg:col-span-2'>
-                <h2 className='text-center text-2xl lg:text-3xl'>
-                    {PHASE_NAMES[phase]}
-                </h2>
-                <p className='text-center text-xl lg:text-2xl'>Phase</p>
-            </div>
+            <h2 className='text-center text-2xl lg:col-span-2 lg:text-3xl'>
+                {PHASE_NAMES[phase]} Phase
+            </h2>
             <div className='relative h-full min-h-0 lg:col-start-1 lg:row-span-3 lg:row-start-2'>
                 <Timer
                     phase={phase}
                     length={phaseLengths[phase]}
                     onEnd={onEnd}
                     className='relative left-1/2 top-1/2 aspect-square max-h-full max-w-full -translate-x-1/2 -translate-y-1/2'
+                />
+                <CountdownTimer
+                    phase={phase}
+                    length={phaseLengths[phase]}
+                    className='absolute top-1/2 w-full -translate-y-1/2 text-6xl lg:text-8xl'
                 />
             </div>
             <div className='flex flex-col gap-4 justify-self-center lg:gap-8'>
@@ -77,11 +83,26 @@ function ArbiterDisplay({
                     rolls.map((e, i) => <Dice key={i} roll={e} />)
                 ) : (
                     <>
-                        <h3>Knight Card</h3>
+                        <h3 className='text-center text-xl lg:text-2xl'>
+                            Knights
+                        </h3>
                         {players.map((e, i) => (
-                            <Button key={i} onClick={() => onKnight?.(i, 1)}>
-                                {e}
-                            </Button>
+                            <div className='flex flex-row items-center gap-2'>
+                                <Button
+                                    key={i}
+                                    onClick={() => onKnight?.(i, 1)}
+                                    className='w-64 !p-4 lg:w-96'>
+                                    {e} - {knightCounts[i]}{' '}
+                                </Button>
+                                <CircleButton
+                                    className='!h-8 !w-8 lg:!h-10 lg:!w-10'
+                                    onClick={event => {
+                                        event.stopPropagation();
+                                        onKnight?.(i, -1);
+                                    }}>
+                                    {'\u21b6'}
+                                </CircleButton>
+                            </div>
                         ))}
                     </>
                 )}

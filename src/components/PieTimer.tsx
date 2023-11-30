@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from 'react';
 import { Phase } from '../lib/data';
 import { useWatch } from '../lib/useWatch';
 
-function Timer({
+function PieTimer({
     length,
     phase,
     onEnd,
@@ -51,4 +51,4 @@ function Timer({
     );
 }
 
-export default Timer;
+export default PieTimer;

@@ -41,6 +41,7 @@ function Arbiter({
     };
 
     const handleKnight = (playerIndex: number, change: number) => {
+        if (knightCounts[playerIndex] + change < 0) return;
         setKnightCounts(
             knightCounts.map((e, i) => (playerIndex === i ? e + change : e))
         );
@@ -60,7 +61,7 @@ function Arbiter({
             }
 
             const pool = knightCounts
-                .map((playerIndex, count) =>
+                .map((count, playerIndex) =>
                     Array<number>(count + 1).fill(playerIndex)
                 )
                 .flat(1);
@@ -70,7 +71,14 @@ function Arbiter({
 
     return (
         <ArbiterDisplay
-            {...{ phase, rolls, players, robberPlayer, phaseLengths }}
+            {...{
+                phase,
+                rolls,
+                players,
+                robberPlayer,
+                phaseLengths,
+                knightCounts,
+            }}
             onEnd={handleEnd}
             onChangeBg={onChangeBg}
             onKnight={handleKnight}

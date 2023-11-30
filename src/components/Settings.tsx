@@ -2,6 +2,7 @@ import { PHASES, PHASE_NAMES, Phase, PhaseRecord } from '../lib/data';
 import Button from '../lib/components/Button';
 import Input from '../lib/components/Input';
 import NumberInput from '../lib/components/NumberInput';
+import CircleButton from '../lib/components/CircleButton';
 
 function Settings({
     players,
@@ -38,25 +39,23 @@ function Settings({
                             value={e}
                             onChange={value => setPlayer(i, value)}
                         />
-                        <button
-                            className='button-colors h-6 w-6 rounded-full text-center text-base lg:h-8 lg:w-8 lg:text-xl '
+                        <CircleButton
                             disabled={players.length <= 2}
                             onClick={() =>
                                 players.length > 2 &&
                                 setPlayers(players.filter((_, i2) => i !== i2))
                             }>
                             {'\u2715' /* x */}
-                        </button>
+                        </CircleButton>
                     </div>
                 ))}
                 {players.length < 4 && (
-                    <button
-                        className='button-colors h-6 w-6 rounded-full text-center text-base lg:h-8 lg:w-8 lg:text-xl'
+                    <CircleButton
                         onClick={() =>
                             players.length < 4 && setPlayers([...players, ''])
                         }>
                         +
-                    </button>
+                    </CircleButton>
                 )}
             </section>
             <section className='flex flex-col gap-2 md:gap-4'>

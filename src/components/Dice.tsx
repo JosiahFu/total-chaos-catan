@@ -2,7 +2,7 @@ import { dotLayout } from '../lib/dieFace';
 
 function Die({ value }: { value: number }) {
     return (
-        <div className='relative inline-grid h-12 w-12 grid-cols-3 grid-rows-3 gap-[10%] rounded-lg bg-white p-[5%] lg:h-20 lg:w-20'>
+        <div className='relative inline-grid h-12 w-12 grid-cols-3 grid-rows-3 gap-[10%] rounded-lg bg-white p-[5%] lg:h-16 lg:w-16'>
             {dotLayout[value].map((e, i) => (
                 <div
                     key={`${value}_${i}`}
