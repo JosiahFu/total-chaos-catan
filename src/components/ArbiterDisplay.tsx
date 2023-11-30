@@ -5,6 +5,7 @@ import Dice from './Dice';
 import Timer from './PieTimer';
 import CircleButton from '../lib/components/CircleButton';
 import CountdownTimer from './CountdownTimer';
+import { buzzer } from '../lib/sounds';
 
 const bgClassNames = {
     resource: 'bg-green-500',
@@ -25,6 +26,7 @@ function ArbiterDisplay({
     onStop,
     phaseLengths,
     knightCounts,
+    soundsEnabled,
 }: {
     phase: Phase;
     rolls: DiceRoll[];
@@ -36,6 +38,7 @@ function ArbiterDisplay({
     onStop?: () => void;
     phaseLengths: PhaseRecord<number>;
     knightCounts: number[];
+    soundsEnabled: boolean;
 }) {
     useEffect(() => {
         onChangeBg?.(bgClassNames[phase]);
@@ -68,6 +71,7 @@ function ArbiterDisplay({
                     phase={phase}
                     length={phaseLengths[phase]}
                     onEnd={onEnd}
+                    endSound={soundsEnabled ? buzzer : undefined}
                     className='relative left-1/2 top-1/2 aspect-square max-h-full max-w-full -translate-x-1/2 -translate-y-1/2'
                 />
                 <CountdownTimer

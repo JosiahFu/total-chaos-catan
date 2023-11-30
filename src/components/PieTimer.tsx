@@ -6,11 +6,13 @@ function PieTimer({
     length,
     phase,
     onEnd,
+    endSound,
     className,
 }: {
     length: number;
     phase: Phase;
     onEnd?: () => void;
+    endSound?: HTMLAudioElement | undefined;
     className?: string;
 }) {
     const [reset, setReset] = useState(true);
@@ -18,7 +20,10 @@ function PieTimer({
     useWatch(() => {
         setReset(true);
         if (!onEnd) return;
-        const timeout = setTimeout(onEnd, length * 1000);
+        const timeout = setTimeout(() => {
+            endSound?.play();
+            onEnd();
+        }, length * 1000);
         return () => clearTimeout(timeout);
     }, phase);
 

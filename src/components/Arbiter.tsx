@@ -11,11 +11,13 @@ function robberNext(rolls: DiceRoll[]) {
 function Arbiter({
     players,
     phaseLengths,
+    soundsEnabled,
     onChangeBg,
     onStop,
 }: {
     players: string[];
     phaseLengths: PhaseRecord<number>;
+    soundsEnabled: boolean;
     onChangeBg?: (className: string) => void;
     onStop?: () => void;
 }) {
@@ -78,6 +80,7 @@ function Arbiter({
                 robberPlayer,
                 phaseLengths,
                 knightCounts,
+                soundsEnabled,
             }}
             onEnd={handleEnd}
             onChangeBg={onChangeBg}

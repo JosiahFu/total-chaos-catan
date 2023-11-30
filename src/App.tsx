@@ -17,6 +17,7 @@ function App() {
         build_trade: 60,
         cooldown: 20,
     });
+    const [soundsEnabled, setSoundsEnabled] = useState(false);
 
     const [playing, setPlaying] = useState(false);
     const [bgClassName, setBgClassName] = useState('');
@@ -30,6 +31,7 @@ function App() {
                 <Arbiter
                     players={players}
                     phaseLengths={phaseLengths}
+                    soundsEnabled={soundsEnabled}
                     onChangeBg={setBgClassName}
                     onStop={() => setPlaying(false)}
                 />
@@ -39,6 +41,8 @@ function App() {
                     setPlayers={setPlayers}
                     lengths={phaseLengths}
                     setLengths={setPhaseLengths}
+                    soundsEnabled={soundsEnabled}
+                    setSoundsEnabled={setSoundsEnabled}
                     onStart={() => setPlaying(true)}
                 />
             )}

@@ -9,12 +9,16 @@ function Settings({
     setPlayers,
     lengths,
     setLengths,
+    soundsEnabled,
+    setSoundsEnabled,
     onStart,
 }: {
     players: string[];
     setPlayers: (players: string[]) => void;
     lengths: PhaseRecord<number>;
     setLengths: (lengths: PhaseRecord<number>) => void;
+    soundsEnabled: boolean;
+    setSoundsEnabled: (soundsEnabled: boolean) => void;
     onStart: () => void;
 }) {
     const setLength = (phase: Phase, length: number) => {
@@ -69,6 +73,19 @@ function Settings({
                         {PHASE_NAMES[e]}
                     </label>
                 ))}
+            </section>
+            <section className='justify-self-center md:col-span-2'>
+                <label className='flex select-none flex-row items-center gap-2'>
+                    <input
+                        type='checkbox'
+                        checked={soundsEnabled}
+                        onChange={event =>
+                            setSoundsEnabled(event.target.checked)
+                        }
+                        className='lg:h-4 lg:w-4'
+                    />
+                    Enable Sounds
+                </label>
             </section>
             <Button className='md:col-span-2' onClick={onStart}>
                 Begin Game
