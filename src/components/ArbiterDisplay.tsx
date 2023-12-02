@@ -49,7 +49,7 @@ function ArbiterDisplay({
     const description = (
         {
             resource: 'Collect resources on any hexagons with these numbers!',
-            robber1: 'All players with >8 resources discard half!',
+            robber1: 'All players with 8 or more resources discard half!',
             robber2: `${
                 robberPlayer === undefined ? '' : players[robberPlayer]
             } steals ${
