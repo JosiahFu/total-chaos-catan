@@ -1,31 +1,20 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { Phase } from '../lib/data';
-import { useWatch } from '../lib/useWatch';
 
 function PieTimer({
     length,
     phase,
-    onEnd,
-    endSound,
     className,
 }: {
     length: number;
     phase: Phase;
-    onEnd?: () => void;
-    endSound?: HTMLAudioElement | undefined;
     className?: string;
 }) {
     const [reset, setReset] = useState(true);
 
-    useWatch(() => {
+    useEffect(() => {
         setReset(true);
-        if (!onEnd) return;
-        const timeout = setTimeout(() => {
-            endSound?.play();
-            onEnd();
-        }, length * 1000);
-        return () => clearTimeout(timeout);
-    }, phase);
+    }, [phase]);
 
     useLayoutEffect(() => {
         if (reset) setReset(false);

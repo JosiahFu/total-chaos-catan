@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { DiceRoll, Phase, PHASE_NAMES, PhaseRecord } from '../lib/data';
 import Button from '../lib/components/Button';
 import Dice from './Dice';
-import Timer from './PieTimer';
+import PieTimer from './PieTimer';
 import CircleButton from '../lib/components/CircleButton';
 import CountdownTimer from './CountdownTimer';
-import { buzzer } from '../lib/sounds';
 import { useNonRepeatKey } from '../lib/useHotKey';
 
 const bgClassNames = {
@@ -27,7 +26,6 @@ function ArbiterDisplay({
     onStop,
     phaseLengths,
     knightCounts,
-    soundsEnabled,
 }: {
     phase: Phase;
     rolls: DiceRoll[];
@@ -39,7 +37,6 @@ function ArbiterDisplay({
     onStop?: () => void;
     phaseLengths: PhaseRecord<number>;
     knightCounts: number[];
-    soundsEnabled: boolean;
 }) {
     useEffect(() => {
         onChangeBg?.(bgClassNames[phase]);
@@ -70,11 +67,9 @@ function ArbiterDisplay({
                 {PHASE_NAMES[phase]} Phase
             </h2>
             <div className='relative h-full min-h-0 lg:col-start-1 lg:row-span-3 lg:row-start-2'>
-                <Timer
+                <PieTimer
                     phase={phase}
                     length={phaseLengths[phase]}
-                    onEnd={onEnd}
-                    endSound={soundsEnabled ? buzzer : undefined}
                     className='relative left-1/2 top-1/2 aspect-square max-h-full max-w-full -translate-x-1/2 -translate-y-1/2'
                 />
                 <CountdownTimer
