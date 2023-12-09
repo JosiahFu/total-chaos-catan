@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { DiceRoll, PHASE_NAMES, Phase, PhaseRecord } from '../lib/data';
+import { DiceRoll, Phase, PHASE_NAMES, PhaseRecord } from '../lib/data';
 import Button from '../lib/components/Button';
 import Dice from './Dice';
 import Timer from './PieTimer';
 import CircleButton from '../lib/components/CircleButton';
 import CountdownTimer from './CountdownTimer';
 import { buzzer } from '../lib/sounds';
+import { useNonRepeatKey } from '../lib/useHotKey';
 
 const bgClassNames = {
     resource: 'bg-green-500',
@@ -43,6 +44,8 @@ function ArbiterDisplay({
     useEffect(() => {
         onChangeBg?.(bgClassNames[phase]);
     }, [onChangeBg, phase]);
+
+    useNonRepeatKey(onEnd, ' ');
 
     const robberSteals = rolls.filter(([d1, d2]) => d1 + d2 === 7).length;
 
@@ -91,9 +94,10 @@ function ArbiterDisplay({
                             Knights
                         </h3>
                         {players.map((e, i) => (
-                            <div className='flex flex-row items-center gap-2'>
+                            <div
+                                key={i}
+                                className='flex flex-row items-center gap-2'>
                                 <Button
-                                    key={i}
                                     onClick={() => onKnight?.(i, 1)}
                                     className='w-64 !p-4 lg:w-96'>
                                     {e} - {knightCounts[i]}{' '}

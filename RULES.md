@@ -68,7 +68,7 @@ Recommended time limit: 20 seconds
 This phase **only occurs if a 7 was rolled** during the Resource Collection Phase.
 
 1. The player with control of the robber moves the robber to a hexagon of their
-   choosing. 
+   choosing.
 2. They may choose any player with a settlement or city on that hexagon to
    steal resources from, one resource for every 7 rolled (e.g. if two 7s are
    rolled, the robber steals two resources).

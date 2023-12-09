@@ -1,4 +1,4 @@
-import { PHASES, PHASE_NAMES, Phase, PhaseRecord } from '../lib/data';
+import { Phase, PHASE_NAMES, PhaseRecord, PHASES } from '../lib/data';
 import Button from '../lib/components/Button';
 import Input from '../lib/components/Input';
 import NumberInput from '../lib/components/NumberInput';
@@ -75,7 +75,7 @@ function Settings({
                 ))}
             </section>
             <section className='justify-self-center md:col-span-2'>
-                <label className='flex select-none flex-row items-center gap-2'>
+                <label className='flex cursor-pointer select-none flex-row items-center gap-2'>
                     <input
                         type='checkbox'
                         checked={soundsEnabled}
