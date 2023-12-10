@@ -9,7 +9,7 @@ import Input from './Input';
 function NumberInput({
     value,
     onChange,
-    className,
+    className = '',
     ...otherProps
 }: Omit<
     InputHTMLAttributes<HTMLInputElement>,

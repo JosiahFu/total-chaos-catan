@@ -4,7 +4,7 @@ import { Phase } from '../lib/data';
 function PieTimer({
     length,
     phase,
-    className,
+    className = '',
 }: {
     length: number;
     phase: Phase;
@@ -22,9 +22,7 @@ function PieTimer({
 
     return (
         <div
-            className={`rounded-full bg-black/25 p-4 ease-linear lg:p-8 ${
-                className ?? ''
-            }`}>
+            className={`rounded-full bg-black/25 p-4 ease-linear lg:p-8 ${className}`}>
             <svg
                 viewBox='0 0 4 4'
                 xmlns='http://www.w3.org/2000/svg'

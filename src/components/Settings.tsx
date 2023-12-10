@@ -30,8 +30,8 @@ function Settings({
     };
 
     return (
-        <div className='grid h-full grid-cols-[max-content] place-content-center gap-4 text-xl md:grid-cols-[max-content_max-content] md:gap-8 lg:text-2xl'>
-            <h2 className='text-center text-3xl md:col-span-2 lg:text-4xl'>
+        <div className='ar-ls:grid-cols-[max-content_max-content] grid h-full grid-cols-[max-content] place-content-center gap-4 text-xl md:gap-8 lg:text-2xl'>
+            <h2 className='ar-ls:col-span-2 text-center text-3xl lg:text-4xl'>
                 Settings
             </h2>
             <section className='flex flex-col items-center gap-2 md:gap-4'>
@@ -74,7 +74,7 @@ function Settings({
                     </label>
                 ))}
             </section>
-            <section className='justify-self-center md:col-span-2'>
+            <section className='ar-ls:col-span-2 justify-self-center'>
                 <label className='flex cursor-pointer select-none flex-row items-center gap-2'>
                     <input
                         type='checkbox'
@@ -87,7 +87,7 @@ function Settings({
                     Enable Sounds
                 </label>
             </section>
-            <Button className='md:col-span-2' onClick={onStart}>
+            <Button className='ar-ls:col-span-2' onClick={onStart}>
                 Begin Game
             </Button>
         </div>

@@ -5,7 +5,7 @@ import { useWatch } from '../lib/useWatch';
 function CountdownTimer({
     phase,
     length,
-    className,
+    className = '',
 }: {
     phase: Phase;
     length: number;
@@ -29,9 +29,7 @@ function CountdownTimer({
     const seconds = Math.floor(remaining / 1000);
 
     return (
-        <div className={`${className ?? ''} text-center font-bold`}>
-            {seconds}
-        </div>
+        <div className={`${className} text-center font-bold`}>{seconds}</div>
     );
 }
 

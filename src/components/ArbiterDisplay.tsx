@@ -62,11 +62,11 @@ function ArbiterDisplay({
     )[phase];
 
     return (
-        <div className='grid h-full grid-cols-1 grid-rows-[auto_1fr_auto_auto_auto_auto_auto] items-center gap-4 lg:grid-cols-2 lg:grid-rows-[auto_1fr_auto_auto] lg:gap-8'>
-            <h2 className='text-center text-2xl lg:col-span-2 lg:text-3xl'>
+        <div className='ar-ls:grid-cols-2 ar-ls:grid-rows-[auto_1fr_auto_auto] grid h-full grid-cols-1 grid-rows-[auto_1fr_1fr_auto_auto_auto_auto] items-center gap-4 lg:gap-8'>
+            <h2 className='ar-ls:col-span-2 text-center text-2xl lg:text-3xl'>
                 {PHASE_NAMES[phase]} Phase
             </h2>
-            <div className='relative h-full min-h-0 lg:col-start-1 lg:row-span-3 lg:row-start-2'>
+            <div className='ar-ls:col-start-1 ar-ls:row-span-3 ar-ls:row-start-2 relative h-full min-h-0'>
                 <PieTimer
                     phase={phase}
                     length={phaseLengths[phase]}
@@ -78,7 +78,7 @@ function ArbiterDisplay({
                     className='absolute top-1/2 w-full -translate-y-1/2 text-6xl lg:text-8xl'
                 />
             </div>
-            <div className='flex flex-col gap-4 justify-self-center lg:gap-8'>
+            <div className='flex h-full max-h-[32rem] w-full flex-col items-center justify-center gap-4 justify-self-center lg:gap-8'>
                 {phase === 'resource' ||
                 phase === 'robber1' ||
                 phase === 'robber2' ? (
@@ -91,10 +91,10 @@ function ArbiterDisplay({
                         {players.map((e, i) => (
                             <div
                                 key={i}
-                                className='flex flex-row items-center gap-2'>
+                                className='flex flex-grow flex-row items-center gap-2'>
                                 <Button
                                     onClick={() => onKnight?.(i, 1)}
-                                    className='w-64 !p-4 lg:w-96'>
+                                    className='h-full w-64 lg:w-96'>
                                     {e} - {knightCounts[i]}{' '}
                                 </Button>
                                 <CircleButton
