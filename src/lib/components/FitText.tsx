@@ -17,8 +17,6 @@ function FitText({
         span.current.style.fontSize = `${fullHeight / (currentHeight / 10)}px`;
     };
 
-    console.log(resize);
-
     useLayoutEffect(() => {
         resize();
     });
