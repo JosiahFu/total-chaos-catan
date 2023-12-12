@@ -62,11 +62,11 @@ function ArbiterDisplay({
     )[phase];
 
     return (
-        <div className='ar-ls:grid-cols-2 ar-ls:grid-rows-[auto_1fr_auto_auto] grid h-full grid-cols-1 grid-rows-[auto_1fr_1fr_auto_auto_auto_auto] items-center gap-4 lg:gap-8'>
-            <h2 className='ar-ls:col-span-2 text-center text-2xl lg:text-3xl'>
+        <div className='grid h-full grid-cols-1 grid-rows-[auto_1fr_1fr_auto_auto_auto_auto] items-center gap-4 ar-ls:grid-cols-2 ar-ls:grid-rows-[auto_1fr_auto_auto] lg:gap-8'>
+            <h2 className='text-center text-2xl ar-ls:col-span-2 lg:text-3xl'>
                 {PHASE_NAMES[phase]} Phase
             </h2>
-            <div className='ar-ls:col-start-1 ar-ls:row-span-3 ar-ls:row-start-2 relative h-full min-h-0'>
+            <div className='relative h-full min-h-0 ar-ls:col-start-1 ar-ls:row-span-3 ar-ls:row-start-2'>
                 <PieTimer
                     phase={phase}
                     length={phaseLengths[phase]}
