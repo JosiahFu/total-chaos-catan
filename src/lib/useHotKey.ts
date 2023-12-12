@@ -26,7 +26,7 @@ function useNonRepeatKey(
     useEffect(() => {
         const callbackDown = (event: KeyboardEvent) => {
             if (event.key !== key) return;
-            if (keyHeld.current === true) return;
+            if (keyHeld.current) return;
             keyHeld.current = true;
             listenerRef.current(event);
         };

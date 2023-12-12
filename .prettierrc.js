@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import('prettier').Config} */
 const config = {
     tabWidth: 4,
     singleQuote: true,
